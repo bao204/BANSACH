@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HoaDon>
+<style>
+    header {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+</style>
+<partial name="_LoginPartial" />
+<h1 style="text-align:center; margin-top:20px">ADMIN DASHBOARD</h1>
+
+<div class="container">
+    <table class="table">
+        <head>
+        <tr style="font-size:13px">
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Số Điện Thoại</th>
+            <th>Địa Chỉ</th>
+            <th>Trạng Thái</th>
+            <th>Tổng</th>
+        </tr>
+        </head>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr style="font-size:16px">
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Address</td>
+                    <td>@item.OrderStatus</td>
+                    <td>@item.Total</td>
+                    <td>
+                        <a class="btn btn-info" asp-action="ChiTietDonHang" asp-route-id="@item.Id">Chi tiết</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,324 @@
+﻿@model List<SanPham>
+<style>
+    .featured .featured-slider .box .content .price span {
+        font-size: 1.5rem;
+        color: var(--light-color);
+        text-decoration: none;
+    }
+
+    .arrivals .arrivals-slider .box .content .price span {
+        font-size: 1.5rem;
+        color: var(--light-color);
+        text-decoration: none;
+    }
+</style>
+<section class="home" id="home">
+
+    <div class="row">
+
+        <div class="content">
+            <h3>giảm tới 45%</h3>
+            <p>Công ty BookShop-BTVK là một công ty hết sức thành công trong mảng sách.</p>
+            <a href="#" class="button button-contactForm boxed-btn">Mua Ngay</a>
+        </div>
+
+        <div class="swiper books-slider">
+            <div class="swiper-wrapper">
+                <a href="#" class="swiper-slide"><img src="~/image/book-1.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-2.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-3.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-4.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-5.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-6.png" alt=""></a>
+            </div>
+            <img src="~/image/stand.png" class="stand" alt="">
+        </div>
+
+    </div>
+
+</section>
+<!-- End home section -->
+<!-- Start icons section -->
+<section class="icons-container">
+
+    <div class="icons">
+        <i class="fas fa-shipping-fast"></i>
+        <div class="content">
+            <h3>miễn phí vận chuyển</h3>
+            <p>đặt hàng trên 100.000 VND</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-lock"></i>
+        <div class="content">
+            <h3>Thanh toán an toàn</h3>
+            <p>100% thanh toán an toàn</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-redo-alt"></i>
+        <div class="content">
+            <h3>dễ dàng đổi trả</h3>
+            <p>10 ngày trả hàng</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-headset"></i>
+        <div class="content">
+            <h3>hỗ trợ 24/7</h3>
+            <p>gọi cho chúng tôi bất cứ lúc nào</p>
+        </div>
+    </div>
+
+</section>
+<!-- Start icons section -->
+<!--Start featured section   -->
+<section class="featured" id="featured">
+    <h1 class="heading"> <span>Sách nổi bật</span> </h1>
+    <div class="swiper featured-slider">
+        <div class="swiper-wrapper">
+            @foreach (var product in Model)
+            {
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-search"></a>
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="image">
+                        <img src="/images/@product.ImageUrl" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>@product.Name</h3>
+                        <div class="price">
+                            <span style="color:red; font-size:20px">@String.Format("{0:0,0}", product.Price) VND</span>
+                            <span style="text-decoration: line-through;">200.000 VND</span>
+                        </div>
+                        <a asp-controller="Shop" asp-action="Details" asp-route-sanphamId="@product.Id" class="btn" style="padding: 2rem 3rem;">thêm vào giỏ hàng</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+<!--End featured section   -->
+<!-- Start newsletter section -->
+<section class="newsletter">
+
+    <form action="">
+        <h3>Đăng ký để nhận cập nhật mới nhất</h3>
+        <input type="email" name="" placeholder="Ghi email của bạn ..." id="" class="box">
+        <input type="submit" value="Đăng Kí Ngay" class="btn" style="padding: 2rem 3rem;">
+    </form>
+
+</section>
+<!-- Start newsletter section -->
+<!-- Start arrivals section  -->
+<section class="arrivals" id="arrivals">
+
+    <h1 class="heading"> <span>sách mới</span> </h1>
+
+    <div class="swiper arrivals-slider">
+
+        <div class="swiper-wrapper">
+            @foreach (var product in ViewBag.FeaturedProducts)
+            {
+            <a href="#" class="swiper-slide box">
+                <div class="image">
+                    <img src="/images/@product.ImageUrl" alt="">
+                </div>
+                    <div class="content">
+                        <h3>sách mới</h3>
+                        <div class="price">
+                            <span style="color:red; font-size:20px">@String.Format("{0:0,0}", product.Price) VND</span>
+                            <span style="text-decoration: line-through;">200.000 VND</span>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+            </a>
+            }
+        </div>
+
+    </div>
+
+    <div class="swiper arrivals-slider">
+
+        <div class="swiper-wrapper">
+            @foreach (var product in ViewBag.NewArrivalProducts)
+            {
+            <a href="#" class="swiper-slide box">
+                
+                <div class="image">
+                    <img src="/images/@product.ImageUrl" alt="">
+                </div>
+                <div class="content">
+                    <h3>sách mới</h3>
+                        <div class="price">
+                                <span style="color:red; font-size:20px">@String.Format("{0:0,0}", product.Price) VND</span>
+                                <span style="text-decoration: line-through;">200.000 VND</span>
+                        </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </a>
+            }
+        </div>
+
+    </div>
+
+</section>
+<!-- End arrivals section  -->
+<!-- deal section starts  -->
+<section class="deal">
+
+    <div class="content">
+        <h3>giao dịch trong ngày</h3>
+        <h1>lên tới 50%</h1>
+        <p>hãy ghé đến shop chúng tôi</p>
+        <a asp-area="User" asp-controller="Shop" asp-action="Index" class="btn" style="padding: 2rem 3rem;">mua ngay</a>
+    </div>
+
+    <div class="image">
+        <img src="~/image/deal-img.jpg" alt="">
+    </div>
+
+</section>
+<!-- deal section ends -->
+<!-- reviews section starts  -->
+<section class="reviews" id="reviews">
+
+    <h1 class="heading"> <span>đánh giá của khách hàng</span> </h1>
+
+    <div class="swiper reviews-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide box">
+                <img src="~/image/pic-1.png" alt="">
+                <h3>Mr. Teo</h3>
+                <p>Tôi không ngờ lại có một web sách tuyệt vời đến vậy!</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="~/image/pic-2.png" alt="">
+                <h3>Mr. Ty</h3>
+                <p>Sách hàng thật, không rách</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="~/image/pic-3.png" alt="">
+                <h3>Mr. NamLee</h3>
+                <p>Đóng gói kỹ, chắc chắn</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+            <div class="swiper-slide box">
+                <img src="~/image/pic-4.png" alt="">
+                <h3>john deol</h3>
+                <p>Sách mới toanh, giao hàng bao nhanh</p>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+
+        <div class="swiper-slide box">
+            <img src="~/image/pic-5.png" alt="">
+            <h3>Mr. Rank</h3>
+            <p>rẻ hơn nhiều so với các shop khác</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+
+        <div class="swiper-slide box">
+            <img src="~/image/pic-6.png" alt="">
+            <h3>BinNam</h3>
+            <p>Sẽ mua lại lần sau</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+</section>
+<!-- reviews section ends -->
+<!-- blogs section starts  -->
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> <span>blog của chúng tôi</span> </h1>
+
+    <div class="swiper blogs-slider">
+
+        <div class="swiper blogs-slider">
+            
+                <div class="swiper-wrapper">
+                    @foreach (var blog in ViewBag.Blogs)
+                    {
+                    <div class="swiper-slide box">
+                        <div class="image">
+                            <img src="@blog.ImageUrl" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>@blog.Title</h3>
+                            <p>@blog.Author</p>
+                            <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn" style="padding: 2rem 3rem;">Xem Thêm</a>
+                        </div>
+                    </div>
+                    }
+                </div>
+            
+        </div>
+        
+    </div>
+
+</section>
+<!-- blogs section ends -->

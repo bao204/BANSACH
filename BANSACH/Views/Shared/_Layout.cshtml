@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web BookShop</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/price_rangs.css">
+    <link rel="stylesheet" href="~/Content/slicknav.css">
+    <link rel="stylesheet" href="~/Content/animate.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/slick.css">
+    <link rel="stylesheet" href="~/Content/nice-select.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+
+
+    <!-- link famework Swiper  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    @RenderSection("Scripts", required: false)
+    <style>
+        .dropdown-content ul li a {
+            color: black
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 99999;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown a {
+            color: black;
+            text-decoration: none;
+            padding: 12px 16px;
+            display: block;
+        }
+
+            .dropdown a:hover {
+                background-color: #f1f1f1;
+            }
+
+        .dropdown i.dropdown-icon {
+            display: none;
+        }
+
+        .dropdown:hover i.dropdown-icon {
+            display: inline-block;
+        }
+
+        .icons span {
+            color: #27AE60;
+            position: absolute;
+            top: 17px;
+            font-size: 15px;
+        }
+
+        .header-2 .navbar {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        .header .header-2 .navbar a {     
+            padding: 1.2rem 3rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Starts header section  -->
+    <header class="header">
+
+        <div class="header-1">
+
+            <a href="~/Views/Home/Index.cshtml" class="logo"> <i class="fas fa-book"></i> BookShop </a>
+
+            <form action="/Shop/Index" method="get" class="search-form" onsubmit="return submitSearchForm()">
+                <input type="search" name="searchTerm" placeholder="Bạn đang tìm gì..." id="search-box">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+
+            <div class="icons">
+                <div id="search-btn" class="fas fa-search"></div>
+                <a href="#" class="fas fa-heart"></a>
+                <a asp-area="User" asp-controller="GioHang" asp-action="Index" class="fas fa-shopping-cart"><span>@await Component.InvokeAsync("QuantityGioHang")</span></a>
+                 <div style="display:none;" id="login-btn" class="fas fa-user"></div> 
+                
+            </div>
+
+        </div>
+        <div class="header-2">
+            <nav class="navbar">
+                <a asp-area="User" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                <a asp-area="User" asp-controller="About" asp-action="Index">Giới thiệu</a>
+                <a asp-area="User" asp-controller="Blog" asp-action="Index">Blogs</a>
+                <a asp-area="User" asp-controller="Contact" asp-action="Index">Liên hệ</a>
+                <div class="dropdown" onmouseover="showDropdown()" onmouseout="hideDropdown()">
+                    <a asp-area="User" asp-controller="Shop" asp-action="Index">
+                        Sản Phẩm
+                        <i class="fas fa-caret-down dropdown-icon"></i>
+                    </a>
+                    <div id="myDropdown" class="dropdown-content">
+                        @await Component.InvokeAsync("TheLoai")
+                    </div>
+                </div>
+                <partial name="_LoginPartial" />
+            </nav>
+        </div>
+
+    </header>
+    <!-- Starts header section  -->
+    <!-- Start bottom navbar  -->
+    <nav class="bottom-navbar">
+        <a asp-controller="Home" asp-action="Index" class="fas fa-home"></a>
+        <a asp-controller="About" asp-action="Index" class="fas fa-address-card"></a>
+        <a asp-controller="Blog" asp-action="Index" class="fas fa-blog"></a>
+        <a asp-controller="Contact" asp-action="Index" class="fas fa-address-book"></a>
+    </nav>
+    <!-- End bottom navbar  -->
+    <!-- Start login form  -->
+    <div class="login-form-container">
+
+        <div id="close-login-btn" class="fas fa-times"></div>
+
+        <form action="">
+            <h3>Đăng Nhập</h3>
+            <span>Tên tài khoản</span>
+            <input type="email" name="" class="box" placeholder="Nhập tên tài khoản" id="">
+            <span>Mật khẩu</span>
+            <input type="password" name="" class="box" placeholder="Nhập mật khẩu" id="">
+            <div class="checkbox">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me"> Lưu mật khấu</label>
+            </div>
+            <input type="submit" value="đăng nhập" class="btn">
+            <p>quên mật khẩu ? <a href="#">quên</a></p>
+            <p>chưa có tài khoản ? <a href="#">Tạo tài khoản</a></p>
+        </form>
+
+    </div>
+    <!-- Start login form  -->
+    <div class="container-fuild">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- footer section starts  -->
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>địa điểm của chúng tôi</h3>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Việt Nam </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Mỹ </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Thái Lan </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Pháp </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Nhật Bản </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Trung Quốc </a>
+            </div>
+
+            <div class="box">
+                <h3>đường dẫn</h3>
+                <a asp-area="User" asp-controller="Home" asp-action="Index"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Giới thiệu  </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Blogs </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Liên hệ </a>
+                <a href="~/Views/Blogs/Index.cshtml"> <i class="fas fa-arrow-right"></i> Sản phẩm </a>
+            </div>
+
+            <div class="box">
+                <h3>liên kết phụ</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> thông tin tài khoản </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> các mặt hàng đã đặt hàng </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Chính sách bảo mật </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> phương thức thanh toán </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> dịch vụ của chúng tôi </a>
+            </div>
+
+            <div class="box">
+                <h3>thông tin liên lạc</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> vn59551@gmail.com </a>
+                <img src="~/image/worldmap.png" class="map" alt="">
+            </div>
+
+        </div>
+
+        <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+
+        <div class="credit"> created by <span>BTVK</span> |</div>
+
+    </section>
+
+    <!-- footer section ends -->
+    <!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="~/Scripts/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="~/Scripts/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/slick.min.js"></script>
+    <script src="~/Scripts/price_rangs.js"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="~/Scripts/wow.min.js"></script>
+    <script src="~/Scripts/animated.headline.js"></script>
+    <script src="~/Scripts/jquery.magnific-popup.js"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="~/Scripts/jquery.scrollUp.min.js"></script>
+    <script src="~/Scripts/jquery.nice-select.min.js"></script>
+    <script src="~/Scripts/jquery.sticky.js"></script>
+
+    <!-- contact js -->
+    <script src="~/Scripts/contact.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/mail-script.js"></script>
+    <script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="~/Scripts/script.js"></script>
+    @*     @await RenderSectionAsync("Scripts", required: false)
+    *@
+</body>
+
+</html>
+<script>
+    function submitSearchForm() {
+        var searchTerm = document.getElementById('search-box').value.trim();
+        if (searchTerm !== '') {
+            // Chuyển hướng đến trang Index với tham số tìm kiếm
+            var baseUrl = window.location.origin; // Lấy đường dẫn gốc của trang web
+            window.location.href = `${baseUrl}/User/Shop/Index?searchTerm=` + encodeURIComponent(searchTerm);
+        }
+        return false; // Ngăn chặn form gửi đi
+    }
+
+    // Lắng nghe sự kiện Enter trên ô tìm kiếm
+    document.getElementById('search-box').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            submitSearchForm();
+        }
+    });
+
+    var timeout;
+
+    function showDropdown() {
+        clearTimeout(timeout);
+        document.getElementById("myDropdown").style.display = "block";
+    }
+
+    function hideDropdown() {
+        timeout = setTimeout(function () {
+            document.getElementById("myDropdown").style.display = "none";
+        }, 500); // 1 giây
+    }
+</script>

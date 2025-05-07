@@ -1,0 +1,42 @@
+﻿@model List<Blog>
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> <span>blog của chúng tôi</span> </h1>
+
+    <div class="swiper blogs-slider">
+
+        <div class="swiper-wrapper">
+            @foreach(var item in Model)
+            {
+            <div class="swiper-slide box">
+                <div class="image">
+                        <img src="@item.ImageUrl" alt="">
+                </div>
+                <div class="content">
+                    <h3>@item.Title</h3>
+                    <p>Tại sao bạn nên chọn nhà sách của chúng tôi?</p>
+                        <a asp-action="BlogDetail" asp-route-id="@item.Id" class="btn post-btn" style="padding: 2rem 3rem;">đọc thêm</a>
+                </div>
+                    
+            </div>
+            }
+
+            <div class="swiper blogs-slider">
+
+                <div class="swiper-wrapper">
+                    @foreach(var item in Model)
+            {
+                    <div class="swiper-slide box">
+                        <div class="image">
+                                <img src="~/images/@item.ImageUrl" alt="">
+                        </div>
+                        <div class="content">
+                                <h3>@item.Title</h3>
+                            <p>Tại sao bạn nên chọn nhà sách của chúng tôi?</p>
+                                <a asp-action="BlogDetail" class="btn" style="padding: 2rem 3rem;">read more</a>
+                        </div>
+                    </div>
+                    }
+
+            </div>
+</section>

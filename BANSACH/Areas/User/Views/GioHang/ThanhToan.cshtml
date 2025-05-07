@@ -1,0 +1,198 @@
+﻿<style>
+    /* Add this CSS to your stylesheet */
+
+    .checkout {
+        padding: 60px 0;
+    }
+
+    .checkout__form {
+        background: #f4f4f4;
+        padding: 40px;
+        border-radius: 10px;
+    }
+
+        .checkout__form h4 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+    .checkout__input {
+        margin-bottom: 25px;
+    }
+
+        .checkout__input p {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .checkout__input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+    .checkout__order {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+        .checkout__order h4 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .checkout__order table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .checkout__order th, .checkout__order td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .checkout__order th {
+            background-color: #f2f2f2;
+        }
+
+    .checkout__order__subtotal,
+    .checkout__order__total {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #333;
+        text-align: right; /* Align to the right */
+    }
+
+    .checkout__input__checkbox {
+        margin-bottom: 15px;
+    }
+
+        .checkout__input__checkbox label {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .checkout__input__checkbox input {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            cursor: pointer;
+        }
+
+        .checkout__input__checkbox .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .checkout__input__checkbox input:checked + .checkmark:after {
+            content: "";
+            position: absolute;
+            display: block;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 12px;
+            border: solid #333;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+</style>
+
+@model GioHangViewModel
+
+<section class="checkout spad">
+    <div class="container">
+        <div class="checkout__form">
+            <h4>Billing Details</h4>
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="checkout__input">
+                            <p>First Name<span>*</span></p>
+                            <input asp-for="HoaDon.Name" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Email<span>*</span></p>
+                            <input type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address<span>*</span></p>
+                            <input asp-for="HoaDon.Address" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Phone<span>*</span></p>
+                            <input asp-for="HoaDon.PhoneNumber" type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Your Order</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.DsGioHang)
+                                    {
+                                        <tr>
+                                            <td>@item.SanPham.Name</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@String.Format("{0:0,0}", item.SanPham.Price) VND</td>
+                                            <td>@String.Format("{0:0,0}", (item.Quantity * item.SanPham.Price)) VND</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="checkout__order__subtotal">Subtotal <span>@String.Format("{0:0,0}", Model.HoaDon.Total) VND</span></div>
+                            <div class="checkout__order__total">Total <span>@String.Format("{0:0,0}", Model.HoaDon.Total) VND</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="checkout__input__checkbox">
+                            <label for="acc-or">
+                                Create an account?
+                                <input type="checkbox" id="acc-or">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="checkout__input__checkbox">
+                            <label for="payment">
+                                Check Payment
+                                <input type="checkbox" id="payment">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="checkout__input__checkbox">
+                            <label for="paypal">
+                                Paypal
+                                <input type="checkbox" id="paypal">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">PLACE ORDER</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

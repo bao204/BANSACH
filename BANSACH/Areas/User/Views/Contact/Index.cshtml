@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+z0I5t9ZrWn/uxSA6QGgOAq4HcBCiKD2Lw+oRfjkpz4g+lyuX+UqoW4Z4jEbQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+         data-background="assets/img/hero/about.png">
+        <div class="container">
+            <div class="row">
+                <div style="margin-top:30px" class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h1>Liên lạc với chung tôi tại đây:</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Area End -->
+<!-- ================ contact section start ================= -->
+<section class="contact-section">
+    <div class="container">
+        <div class="d-none d-sm-block mb-5 pb-4">
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.2901094780163!2d106.59805157480629!3d10.865525089288733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752b088de30f3b%3A0xd2140740d360f705!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOZ2_huqFpIG5n4buvIC0gVGluIGjhu41jIFRQLiBIQ00gKEhVRkxJVCkgLSBDxqEgc-G7nyBIw7NjIE3DtG4!5e0!3m2!1svi!2s!4v1699978906355!5m2!1svi!2s"
+                    width="1180" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Liên lạc</h2>
+            </div>
+            <div class="col-lg-8">
+                <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm"
+                      novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
+                                          onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập tin nhắn'"
+                                          placeholder=" Nhập tin nhắn"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input class="form-control valid" name="name" id="name" type="text"
+                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập tên của bạn'"
+                                       placeholder="Nhập tên của bạn">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input class="form-control valid" name="email" id="email" type="email"
+                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập địa chỉ email'"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" name="subject" id="subject" type="text"
+                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập chủ đề'"
+                                       placeholder="Nhập chủ đề">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="button button-contactForm boxed-btn">Gửi</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="fas fa-home"></i></span>
+                    <div class="media-body">
+                        <h3>Sai Gon City</h3>
+                        <p>......</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="fas fa-phone"></i></span>
+                    <div class="media-body">
+                        <h3>0399163461</h3>
+                        <p>Thứ Hai đến thứ Bảy 8 giờ sáng đến 6 giờ chiều</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="fas fa-envelope"></i></span>
+                    <div class="media-body">
+                        <h3>vn59551@gmail.comcom</h3>
+                        <p>Gửi cho chúng tôi yêu cầu của bạn bất cứ lúc nào!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ contact section end ================= -->

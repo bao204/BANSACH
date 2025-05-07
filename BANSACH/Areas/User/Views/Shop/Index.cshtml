@@ -1,0 +1,342 @@
+﻿@model SanPham
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>BookSaw - Free Book Store HTML CSS Template</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/~/shop/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="~/shop/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="~/shop/icomoon/icomoon.css">
+	<link rel="stylesheet" type="text/css" href="~/shop/css/vendor.css">
+@* 	<link rel="stylesheet" type="text/css" href="~/shop/style.css"> *@
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<style>
+	
+	.tab-content {
+		position: relative;
+	}
+
+	[data-tab-content] {
+		opacity: 0;
+		visibility: hidden;
+		height: 0;
+		overflow: hidden;
+	}
+
+	.active[data-tab-content] {
+		opacity: 1;
+		visibility: visible;
+		height: auto;
+	}
+
+	.product-style {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.slick-slider .product-style {
+		margin: 0 15px 25px;
+	}
+
+	.product-style figcaption p {
+		margin-bottom: 20px;
+	}
+
+	.product-style img.product-item {
+		position: relative;
+		background: #EFEEE8;
+		border: 1px solid #EAE8DF;
+		padding: 4%;
+		cursor: pointer;
+		width: 100%;
+	}    
+
+	.product-style button.add-to-cart {
+		position: absolute;
+		background: #000;
+		color: #fff;
+		width: 100%;
+		margin: 0;
+		text-transform: uppercase;
+		text-align: center;
+		line-height: 3;
+		bottom: 300px;
+		bottom: -65px;
+		left: 0;
+		z-index: 9;
+		transition: 0.3s ease-out;
+	}
+
+	.product-style:hover button.add-to-cart {
+		bottom: 380px;
+		bottom: 0;
+	}
+
+	.products-grid .product-item {
+		width: 45%;
+	}
+
+	.product-style img.product-item {
+		/*height: 550px;*/
+		object-fit: contain;
+		margin: 0 auto;
+	}
+
+	.products-grid.col-3 .product-style,
+	.products-grid.col-4 .product-style,
+	.products-grid.col-5 .product-style {
+		width: 100%;
+	}
+
+	.product-item figcaption {
+		margin-top: 30px;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+
+		.product-item figcaption > h3 {
+			font-size: 2rem;
+			font-weight: 500;
+			color: #74642F;
+			margin: 0;
+		}
+
+		.product-item figcaption > p {
+			margin: 0;
+		}
+
+	.product-item .item-price {
+		color: #74642F;
+		font-size: 1.3em;
+	}
+
+
+
+	.shop__sidebar__accordion .card {
+		border: none;
+		border-radius: 0;
+		margin-bottom: 25px;
+	}
+
+		.shop__sidebar__accordion .card:last-child {
+			margin-bottom: 0;
+		}
+
+			.shop__sidebar__accordion .card:last-child .card-body {
+				padding-bottom: 0;
+				border-bottom: none;
+			}
+
+	.shop__sidebar__accordion .card-body {
+		padding: 0;
+		padding-top: 10px;
+		padding-bottom: 20px;
+		border-bottom: 1px solid #e5e5e5;
+	}
+
+	.shop__sidebar__accordion .card-heading {
+		cursor: pointer;
+	}
+
+		.shop__sidebar__accordion .card-heading a {
+			color: #111111;
+			font-size: 16px;
+			font-weight: 700;
+			text-transform: uppercase;
+			display: block;
+		}
+
+	.shop__sidebar__categories ul,
+	.shop__sidebar__price ul,
+	.shop__sidebar__brand ul {
+		height: 225px;
+	}
+
+		.shop__sidebar__categories ul li,
+		.shop__sidebar__price ul li,
+		.shop__sidebar__brand ul li {
+			list-style: none;
+		}
+
+			.shop__sidebar__categories ul li a,
+			.shop__sidebar__price ul li a,
+			.shop__sidebar__brand ul li a {
+				color: #b7b7b7;
+				font-size: 15px;
+				line-height: 32px;
+				-webkit-transition: all, 0.3s;
+				-o-transition: all, 0.3s;
+				transition: all, 0.3s;
+			}
+
+				.shop__sidebar__categories ul li a:hover,
+				.shop__sidebar__price ul li a:hover,
+				.shop__sidebar__brand ul li a:hover {
+					color: #111111;
+				}
+
+	.shop__sidebar__brand ul {
+		height: auto;
+	}
+
+	.shop__sidebar__price ul {
+		height: auto;
+	}
+
+
+
+	.shop__sidebar__tags {
+		padding-top: 15px;
+	}
+
+		.shop__sidebar__tags a {
+			color: #404040;
+			font-size: 13px;
+			font-weight: 700;
+			background: #f1f5f8;
+			padding: 5px 18px;
+			display: inline-block;
+			text-transform: uppercase;
+			margin-right: 6px;
+			margin-bottom: 10px;
+			-webkit-transition: all, 0.3s;
+			-o-transition: all, 0.3s;
+			transition: all, 0.3s;
+		}
+
+			.shop__sidebar__tags a:hover {
+				background: #111111;
+				color: #ffffff;
+			}
+
+	.shop__sidebar__accordion .card-heading a:after,
+	.shop__sidebar__accordion .card-heading > a.active[aria-expanded=false]:after {
+		content: "";
+		font-family: "FontAwesome";
+		font-size: 24px;
+		font-weight: 700;
+		color: #111111;
+		position: absolute;
+		right: 0;
+		top: 2px;
+		line-height: 20px;
+	}
+
+	.shop__sidebar__accordion .card-heading.active a:after {
+		content: "";
+		font-family: "FontAwesome";
+		font-size: 24px;
+		font-weight: 700;
+		color: #111111;
+		position: absolute;
+		right: 0;
+		top: 2px;
+		line-height: 20px;
+	}
+</style>
+
+
+
+
+	<section id="popular-books" class="bookshelf py-5 my-5">
+		<div class="container">
+			<div class="row">
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                   
+                    <div class="shop__sidebar__accordion">
+                        <div class="accordion" id="accordionExample">
+                           
+                            <!-- Card "Filter Price" -->
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                </div>
+                                <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__price">
+                                            <ul>
+                                                <li><a href="@Url.Action("Index", "Shop", new { minPrice = 0, maxPrice = 150000 })">0 - 150,000 VND</a></li>
+                                                <li><a href="@Url.Action("Index", "Shop", new { minPrice = 160000, maxPrice = 250000 })">160,000 - 250,000 VND</a></li>
+                                                <li><a href="@Url.Action("Index", "Shop", new { minPrice = 260000, maxPrice = 360000 })">260,000- 360,000 VND</a></li>
+                                                <li><a href="@Url.Action("Index", "Shop", new { minPrice = 470000, maxPrice = 580000 })">470,000 - 580,000 VND</a></li>
+                                                <li><a href="@Url.Action("Index", "Shop", new { minPrice = 590000 })">590,000+ VND</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                       
+                          
+                           
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+				<div class="col-lg-9">
+
+					<div class="section-header align-center">
+						<h2 class="section-title">Books Store</h2>
+					</div>
+
+					<div class="tab-content">
+						<div id="all-genre" data-tab-content class="active">
+							
+							<div class="row">
+								@foreach(var item in ViewBag.sanpham)
+							{
+								<div class="col-md-3">
+									<div class="product-item">
+										<figure class="product-style">
+											<img style="height:350px" src="/images/@item.ImageUrl" alt="Books" class="product-item">
+												<form asp-controller="Shop" asp-action="Details" method="get">
+													<input type="hidden" name="sanphamId" value="@item.Id" />
+													<button type="submit" class="add-to-cart" data-product-tile="add-to-cart">
+														Add to Cart
+													</button>
+												</form>
+										</figure>
+										<figcaption>
+											<h3>@item.Name</h3>
+											<span>@item.TheLoai.Name</span>
+												<div class="item-price">@String.Format("{0:0,0}",@item.Price) VND</div>
+										</figcaption>
+									</div>
+								</div>
+								}
+							</div>
+							
+						</div>
+			</div>
+		</div>
+	</section>
+
+	
+
+	
+
+	<script src="~/shop/js/jquery-1.11.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/~/shop/js/bootstrap.bundle.min.js"
+			integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+			crossorigin="anonymous"></script>
+	<script src="~/shop/js/plugins.js"></script>
+	<script src="~/shop/js/script.js"></script>
+
+
+
+</html>

@@ -1,0 +1,31 @@
+﻿<style>
+    header {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+</style>
+<partial name="_LoginPartial" />
+<h1 style="text-align:center; margin-top:20px">ADMIN DASHBOARD</h1>
+<div>
+<h2>Category Details</h2>
+    <table class="table" style="font-size:16px">
+    <tr>
+        <th>ID:</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Tên Nhà cung cấp:</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>STD</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Trang chủ</a>
+</div>

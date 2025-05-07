@@ -1,0 +1,58 @@
+﻿@model SanPham
+<style>
+    header {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .partial-wrapper {
+        background-color: black;
+        color: white;
+        width: 250px;
+        margin: 0;
+        padding: 0;
+        float: right;
+        font-size: 16px;
+    }
+</style>
+
+    <partial name="_LoginPartial" />
+
+<div style="font-size:16px">
+    
+    <h1 style="text-align:center; margin-top:20px" >ADMIN DASHBOARD</h1>
+<h2 style="margin-top:50px">Category Details</h2>
+<table class="table">
+    <tr>
+        <th>ID:</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Tên sản phẩm:</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Mô tả:</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <th>Giá:</th>
+        <td>@Model.Price</td>
+    </tr>
+    <tr>
+        <th>Hình ảnh :</th>
+        <td>
+            <img src="~/images/@Model.ImageUrl" alt="Category Image" width="100">
+        </td>
+    </tr>
+    <tr>
+        <th>thể loại:</th>
+        <td>@Model.TheLoaiId</td>
+    </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Trang chủ</a>
+</div>

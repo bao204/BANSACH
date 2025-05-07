@@ -1,0 +1,44 @@
+﻿@model SanPham
+<style>
+    header {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+</style>
+<partial name="_LoginPartial" />
+<h1 style="text-align:center; margin-top:20px">ADMIN DASHBOARD</h1>
+
+<div style="font-size:16px">
+<h2>Xác nhận xóa sản phẩm</h2>
+<p>Bạn có chắc chắn muốn xóa sản phẩm sau đây?</p>
+
+<table class="table">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Giá</th>
+        <td>@Model.Price</td>
+    </tr>
+    <tr>
+        <th>Mô tả</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <th>Hình ảnh</th>
+        <td><img src="/images/@Model.ImageUrl" width="150" /></td>
+    </tr>
+    <!-- Thêm các thông tin khác của sản phẩm vào bảng -->
+</table>
+
+<form method="post" asp-action="DeleteConfirm">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Xóa sản phẩm</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+</div>
